@@ -14,9 +14,9 @@ using namespace std;
 /*a2 + b2 = c2 see how close two 2D positions are, see if they are colliding
 Precon – pos1+pos2 are 2D positions representing objects moving around
 IN: pos1, pos2 – a pair of 2D coordinates
-IN: minDist – if they two coordinates are closer or as close as this->collision
-RETURNS: true if collision detected
-Postcon – two circles are either colliding or not
+IN: minDist – if the two coordinates are less than or equal to this then collide = true
+RETURNS: true if collision is detected
+Postcon – collide is true or false
 */
 bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
 {
@@ -259,6 +259,8 @@ int main()
 	Texture shipTex, assTex;
 	LoadTexture("data/ship.png", shipTex);
 	LoadTexture("data/asteroid.png", assTex);
+
+	Textures DrawBgnd;
 	
 
 	/*Ship ship;
