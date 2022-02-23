@@ -58,13 +58,13 @@ void Textures::DrawBgnd(float elapsed, sf::RenderWindow& window)
 	//background order of sprites
 	Textures::Tex ids[MAX_TEXTURES]{
 		Textures::BACK7,
+		Textures::BACK6,
 		Textures::BACK5,
 		Textures::BACK4,
 		Textures::BACK3,
 		Textures::BACK2,
 		Textures::BACK1,
 		Textures::BACK0,
-		Textures::BACK6,
 	};
 
 	float spd = GC::BACK_SPEED * elapsed;
@@ -198,9 +198,9 @@ struct GameObject {
 
 	float GetRandomRange(float min, float max)
 	{
-		//alpha =  (float)rand()/RAND_MAX
+		float alpha = (float)rand() / RAND_MAX;
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		return 1.f;
+		return alpha;
 	}
 
 	int GetRandomRange(int min, int max)
@@ -259,6 +259,7 @@ int main()
 	Texture shipTex, assTex;
 	LoadTexture("data/ship.png", shipTex);
 	LoadTexture("data/asteroid.png", assTex);
+	
 
 	/*Ship ship;
 	ship.Init(window, shipTex);
