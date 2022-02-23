@@ -26,13 +26,15 @@ bool CircleToCircle(const Vector2f& pos1, const Vector2f& pos2, float minDist)
 	return dist <= minDist;
 }
 
+
+//attempt at scrolling background 
 void Textures::LoadTextures()
 {
 	stringstream ss;
 	for (int i = 0; i < MAX_TEXTURES; ++i)
 	{
 		ss.str("");
-		ss << "data/backgroundLayers/mountains01_00" << i << ".png";
+		ss << "data/backgroundLayers/mountains01_00" << i << ".png"; //loads each picture per cycle of loop
 
 		Texture& t = Get(static_cast<Tex>(i));
 		if (!t.loadFromFile(ss.str()))
@@ -55,7 +57,7 @@ void Textures::ScrollBgnd(Tex texId, sf::RenderWindow& window, int inc)
 
 void Textures::DrawBgnd(float elapsed, sf::RenderWindow& window)
 {
-	//background order of sprites
+																		//background order of sprites
 	Textures::Tex ids[MAX_TEXTURES]{
 		Textures::BACK7,
 		Textures::BACK6,
@@ -131,7 +133,7 @@ struct GameObject {
 			if (colliding)
 				debugCircle.setOrigin(50.f, 50.f);
 			else
-				debugCircle.setOutlineColor(sf::Color::Transparent);
+				debugCircle.setOutlineColor(sf::Color::Transparent); //change color if want to see collisions
 			debugCircle.setOrigin(radius, radius);
 			debugCircle.setFillColor(sf::Color::Transparent);
 			debugCircle.setOutlineThickness(3);
@@ -168,26 +170,26 @@ struct GameObject {
 	}
 
 
-	void UpdateShip(const Vector2u& screenSz, float elapsed) {
+	void UpdateShip(const Vector2u& screenSz, float elapsed) { //basic ship movement
 		Vector2f pos = spr.getPosition();
 		const float SPEED = 250.f;
-		if (Keyboard::isKeyPressed(Keyboard::Up))
+		if (Keyboard::isKeyPressed(Keyboard::Up)) //rebind keys here
 		{
 			if (pos.y > (screenSz.y * 0.05f))
 				pos.y -= SPEED * elapsed;
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Down))
+		else if (Keyboard::isKeyPressed(Keyboard::Down)) //here
 		{
 			if (pos.y < (screenSz.y * 0.95f))
 				pos.y += SPEED * elapsed;
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Left))
+		if (Keyboard::isKeyPressed(Keyboard::Left)) //here
 		{
 			if (pos.x > (screenSz.x * 0.05f))
 				pos.x -= SPEED * elapsed;
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::Right))
+		else if (Keyboard::isKeyPressed(Keyboard::Right)) //and here
 		{
 			if (pos.x < (screenSz.x * 0.95f))
 				pos.x += SPEED * elapsed;
@@ -198,14 +200,14 @@ struct GameObject {
 
 	float GetRandomRange(float min, float max)
 	{
-		float alpha = (float)rand() / RAND_MAX;
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		float alpha = (float)rand() / RAND_MAX; //random rock sizes
+	
 		return alpha;
 	}
 
 	int GetRandomRange(int min, int max)
 	{
-		float alpha = GetRandomRange((float)min, (float)max);
+		float alpha = GetRandomRange((float)min, (float)max); 
 		return round(alpha);
 	}
 
